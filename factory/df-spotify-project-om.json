@@ -1,0 +1,15 @@
+{
+	"name": "df-spotify-project-om",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "canadacentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "dd1b4199-4aca-4a1f-8f39-4270689f0caf",
+		"tenantId": "504e0c95-90d2-4b01-b1d7-f3aa9bc333d7"
+	}
+}
