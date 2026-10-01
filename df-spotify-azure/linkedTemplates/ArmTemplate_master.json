@@ -1,0 +1,126 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "df-spotify-azure"
+		},
+		"AzureDataLakeStorage_write_data_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_write_data'"
+		},
+		"AzureSqlDatabase_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase'"
+		},
+		"Spotify_DataLake_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'Spotify_DataLake'"
+		},
+		"Spotify_sql_source_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Spotify_sql_source'"
+		},
+		"AzureDataLakeStorage_write_data_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://spotifyazure.dfs.core.windows.net/"
+		},
+		"AzureSqlDatabase_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "spotifyazure.database.windows.net"
+		},
+		"AzureSqlDatabase_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "spotify-project-om"
+		},
+		"AzureSqlDatabase_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin-om"
+		},
+		"Spotify_DataLake_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://spotifyprojectom.dfs.core.windows.net/"
+		},
+		"Spotify_sql_source_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "spotify-project-om.database.windows.net"
+		},
+		"Spotify_sql_source_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "db-spotify-project"
+		},
+		"Spotify_sql_source_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin-om"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "df-spotify-azure_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage_write_data_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage_write_data_accountKey')]"
+					},
+					"AzureSqlDatabase_password": {
+						"value": "[parameters('AzureSqlDatabase_password')]"
+					},
+					"Spotify_DataLake_accountKey": {
+						"value": "[parameters('Spotify_DataLake_accountKey')]"
+					},
+					"Spotify_sql_source_password": {
+						"value": "[parameters('Spotify_sql_source_password')]"
+					},
+					"AzureDataLakeStorage_write_data_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage_write_data_properties_typeProperties_url')]"
+					},
+					"AzureSqlDatabase_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase_properties_typeProperties_userName')]"
+					},
+					"Spotify_DataLake_properties_typeProperties_url": {
+						"value": "[parameters('Spotify_DataLake_properties_typeProperties_url')]"
+					},
+					"Spotify_sql_source_properties_typeProperties_server": {
+						"value": "[parameters('Spotify_sql_source_properties_typeProperties_server')]"
+					},
+					"Spotify_sql_source_properties_typeProperties_database": {
+						"value": "[parameters('Spotify_sql_source_properties_typeProperties_database')]"
+					},
+					"Spotify_sql_source_properties_typeProperties_userName": {
+						"value": "[parameters('Spotify_sql_source_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
